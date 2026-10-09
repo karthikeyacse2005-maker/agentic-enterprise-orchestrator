@@ -55,7 +55,7 @@ graph TD
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### 1. Prerequisites & Environment
 Ensure you have Docker and Python 3.11+ installed.
@@ -82,10 +82,10 @@ docker-compose up -d
 # Run FastAPI Orchestration Engine
 uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 ```
-📊 Benchmarks & Performance Metrics
+ Benchmarks & Performance Metrics
 Metric,Baseline (Sequential LLM),Agentic Orchestrator (This System)
 Execution Latency,3.8s / request,2.47s / request (-35%)
 JSON Payload Errors,12.4% edge cases,0.0% (Enforced by Guardrails)
 Multi-Hop Task Completion,68.2%,94.1%
-📄 License
+ License
 This project is licensed under the MIT License - see the LICENSE file for details.
