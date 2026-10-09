@@ -33,30 +33,59 @@ graph TD
     Router <--> RedisState[(Redis State Persistence / HITL Context)]
     
     Router --> Response[Final Evaluated Output]
-Key Features
-Stateful Multi-Agent Workflows: Built on LangGraph to manage cyclic multi-step reasoning with Human-in-the-Loop (HITL) WebSocket validation gates.
+```
+## Key Features
 
-Model Context Protocol (MCP): Implements FastMCP to standardize tool-calling and context sharing across distributed databases.
+- **Stateful Multi-Agent Workflows:** Built on LangGraph to manage cyclic multi-step reasoning with Human-in-the-Loop (HITL) WebSocket validation gates.
+- **Model Context Protocol (MCP):** Implements `FastMCP` to standardize tool-calling and context sharing across distributed databases.
+- **Production Guardrails:** Integrated `Guardrails AI` schema validation and `Llama-Guard` to prevent prompt injection and strictly enforce structured Pydantic outputs.
+- **High-Throughput State Persistence:** Powered by Redis state-saving, enabling session checkpointing and sub-120ms execution overhead.
 
-Production Guardrails: Integrated Guardrails AI schema validation and Llama-Guard to prevent prompt injection and strictly enforce structured Pydantic outputs.
+---
 
-High-Throughput State Persistence: Powered by Redis state-saving, enabling session checkpointing and sub-120ms execution overhead.
-Tech StackCategoryTechnologiesOrchestrationLangGraph, LangChain, FastMCPSafety & EvaluationGuardrails AI, Pydantic, TruLensAPI & GatewayFastAPI, WebSockets, AsyncIOPersistence & CacheRedis, PostgreSQL, SQLAlchemyEnvironmentDocker, Python 3.11+, Poetry
+## Tech Stack
 
+| Category | Technologies |
+| :--- | :--- |
+| **Orchestration** | LangGraph, LangChain, FastMCP |
+| **Safety & Evaluation** | Guardrails AI, Pydantic, TruLens |
+| **API & Gateway** | FastAPI, WebSockets, AsyncIO |
+| **Persistence & Cache** | Redis, PostgreSQL, SQLAlchemy |
+| **Environment** | Docker, Python 3.11+, Poetry |
+
+---
+
+## 🚀 Quick Start
+
+### 1. Prerequisites & Environment
+Ensure you have Docker and Python 3.11+ installed.
+
+```bash
 git clone [https://github.com/karthikeyacse2005-maker/agentic-enterprise-orchestrator.git](https://github.com/karthikeyacse2005-maker/agentic-enterprise-orchestrator.git)
 cd agentic-enterprise-orchestrator
 python -m venv venv
 source venv/bin/activate  # On Windows use: venv\Scripts\activate
 pip install -r requirements.txt
-
+```
+2. Environment Configuration
+Create a .env file in the root directory:
+```Code snippet
 OPENAI_API_KEY=your_openai_api_key
 REDIS_URL=redis://localhost:6379/0
 POSTGRES_DB_URL=postgresql://user:password@localhost:5432/orchestrator
-
+```
+3. Run Services
+```Bash
 # Start Redis and Postgres via Docker
 docker-compose up -d
 
 # Run FastAPI Orchestration Engine
 uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
-📊 Benchmarks & Performance MetricsMetricBaseline (Sequential LLM)Agentic Orchestrator (This System)Execution Latency3.8s / request2.47s / request (-35%)JSON Payload Errors12.4% edge cases0.0% (Enforced by Guardrails)Multi-Hop Task Completion68.2%94.1%
+```
+📊 Benchmarks & Performance Metrics
+Metric,Baseline (Sequential LLM),Agentic Orchestrator (This System)
+Execution Latency,3.8s / request,2.47s / request (-35%)
+JSON Payload Errors,12.4% edge cases,0.0% (Enforced by Guardrails)
+Multi-Hop Task Completion,68.2%,94.1%
+📄 License
 This project is licensed under the MIT License - see the LICENSE file for details.
