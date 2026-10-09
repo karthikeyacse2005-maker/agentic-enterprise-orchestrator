@@ -33,7 +33,7 @@ graph TD
     Router <--> RedisState[(Redis State Persistence / HITL Context)]
     
     Router --> Response[Final Evaluated Output]
-```
+
 Key Features
 Stateful Multi-Agent Workflows: Built on LangGraph to manage cyclic multi-step reasoning with Human-in-the-Loop (HITL) WebSocket validation gates.
 
@@ -76,5 +76,5 @@ docker-compose up -d
 uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
+```
 
